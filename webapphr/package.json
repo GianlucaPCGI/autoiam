@@ -19,6 +19,7 @@
     "react-dom": "18.2.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.18.10",
     "eslint": "8.22.0",
     "eslint-config-next": "12.2.5"
   }
