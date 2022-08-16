@@ -4,7 +4,8 @@ services:
   web:
     container_name: webapp
     build:
-      context: ./webapphr/
+      context: .
+      dockerfile: webapphr/Dockerfile
     env_file:
       - ".env"
     ports:
