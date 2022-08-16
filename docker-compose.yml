@@ -5,7 +5,7 @@ services:
     container_name: webapp_container
     build:
       context: ./webapphr
-      dockerfile: ./webapphr/Dockerfile
+      dockerfile: ./Dockerfile
     ports:
       - 3000:3000
 
