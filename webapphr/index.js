@@ -38,8 +38,8 @@ function sendHook() {
     let data = {
         hook: true
     }
-    fetch("http://localhost:3001/", {
-        method: "GET",
+    fetch("http://localhost:3001/test", {
+        method: "POST",
         headers: {
             'Content-Type': 'application/json'
         },

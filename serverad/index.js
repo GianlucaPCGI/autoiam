@@ -15,6 +15,16 @@ app.get('/', (req, res) => {
     res.end();
 });
 
+app.post('/test', (req, res) => {
+    if (req.body.hook == true) {
+        res.json({ message: "success"});
+        res.end();
+    }else {
+        res.json({ message: "not true but still rich"});
+        res.end();
+    }
+});
+
 
 const port = 3001;
 
