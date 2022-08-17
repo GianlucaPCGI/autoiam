@@ -35,6 +35,11 @@ app.get('/test', (req, res) => {
 
 })
 
+app.post('/posttest', (req, res) => {
+    console.log(req.body.title);
+    res.end();
+})
+
 const port = 3000;
 
 app.listen(port, () => {
