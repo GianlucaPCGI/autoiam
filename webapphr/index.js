@@ -1,5 +1,6 @@
 const express = require('express');
 const mysql = require('mysql');
+const bodyParser = require('body-parser');
 
 const db = mysql.createConnection({
     host: 'localhost',
@@ -17,6 +18,8 @@ db.connect((err) => {
 })
 
 const app = express();
+
+app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
     res.json({ message: "success"});
