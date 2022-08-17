@@ -1,27 +1,5 @@
 {
-  "name": "webapphr",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "node server/index.js",
-    "build": "next build",
-    "start": "node server/index.js",
-    "lint": "next lint"
-  },
   "dependencies": {
-    "body-parser": "^1.20.0",
-    "bootstrap": "^5.2.0",
-    "cors": "^2.8.5",
-    "dotenv": "^16.0.1",
-    "express": "^4.18.1",
-    "mysql": "^2.18.1",
-    "next": "12.2.5",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.18.10",
-    "eslint": "8.22.0",
-    "eslint-config-next": "12.2.5"
+    "express": "^4.18.1"
   }
 }
