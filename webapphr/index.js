@@ -3,6 +3,7 @@ const express = require('express');
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const fetch = require('node-fetch');
 
 console.log(process.env.DB_NAME);
 console.log(process.env.DB_PASSWORD);
