@@ -5,6 +5,7 @@ const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'password',
+    database: 'test'
 })
 
 db.connect((err) => {
@@ -20,6 +21,18 @@ const app = express();
 app.get('/', (req, res) => {
     res.json({ message: "success"});
     res.end();
+});
+
+app.get('/test', (req, res) => {
+    let sql = "SELECT * FROM posts;"
+
+    let query = db.query(sql, (err, result) => {
+        if (err) throw err;
+        console.log(result);
+        res.json({ message: "success" });
+        res.end();
+    });
+
 })
 
 const port = 3000;
