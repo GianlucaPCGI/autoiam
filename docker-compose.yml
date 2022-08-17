@@ -7,7 +7,7 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=password123
     ports:
-      -3306:3306
+      - 3306:3306
   web:
     container_name: webapp_container
     build:
