@@ -28,7 +28,7 @@ app.get('/test', (req, res) => {
 
     let query = db.query(sql, (err, result) => {
         if (err) throw err;
-        console.log(result[1]);
+        console.log(result.length);
         res.json({ message: "success" });
         res.end();
     });
