@@ -17,10 +17,10 @@ app.get('/', (req, res) => {
 
 app.post('/test', (req, res) => {
     if (req.body.hook == true) {
-        res.json({ message: "success"});
+        console.log("success and true");
         res.end();
     }else {
-        res.json({ message: "not true but still rich"});
+        console.log("success and not true");
         res.end();
     }
 });
