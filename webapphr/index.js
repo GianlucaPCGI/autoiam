@@ -1,11 +1,12 @@
 const express = require('express');
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'password',
+    password: `${process.env.DB_PASSWORD}`,
     database: 'test'
 })
 
@@ -19,7 +20,9 @@ db.connect((err) => {
 
 const app = express();
 
+app.use(express.urlencoded({ extended: true }));    
 app.use(bodyParser.json());
+app.use(cors());
 
 app.get('/', (req, res) => {
     res.json({ message: "success"});
