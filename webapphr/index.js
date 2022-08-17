@@ -1,8 +1,8 @@
+require('dotenv').config();
 const express = require('express');
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-require('dotenv').config();
 
 console.log(process.env.DB_NAME);
 console.log(process.env.DB_PASSWORD);
@@ -32,17 +32,18 @@ app.get('/', (req, res) => {
     res.end();
 });
 
-app.get('/test', (req, res) => {
-    let sql = "SELECT * FROM posts;"
-
-    let query = db.query(sql, (err, result) => {
-        if (err) throw err;
-        console.log(result[0].title);
-        res.json({ message: "success" });
-        res.end();
-    });
-    
-});
+function sendHook() {
+    let data = {
+        hook: true
+    }
+    fetch("http://localhost:3001/", {
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+}
 
 app.post('/create', (req, res) => {
     let nom = req.body.nom;
@@ -55,6 +56,7 @@ app.post('/create', (req, res) => {
             res.end();
         }
         res.json({ message: "Employe ajoute avec succes" });
+        sendHook();
         res.end();
     });
 })
