@@ -45,7 +45,7 @@ app.get('/test', (req, res) => {
 app.post('/create', (req, res) => {
     let nom = req.body.nom;
     let statut = req.body.statut;
-    let sql = `INSERT INTO employe (nom,statut) VALUES (${nom},${statut});`; // a ajoute des champs requis
+    let sql = `INSERT INTO employe (nom,statut) VALUES ('${nom}','${statut}');`; // a ajoute des champs requis
     let query = db.query(sql, (err, result) => {
         if (err) {
             console.log(err);
