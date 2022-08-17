@@ -3,7 +3,7 @@ const mysql = require('mysql');
 const bodyParser = require('body-parser');
 
 const db = mysql.createConnection({
-    host: '20.151.130.99',
+    host: '10.5.0.4/24',
     user: 'root',
     password: 'password',
     database: 'test'
