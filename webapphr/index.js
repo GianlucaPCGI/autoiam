@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 require("dotenv").config();
 
+console.log(process.env.DB_NAME);
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
