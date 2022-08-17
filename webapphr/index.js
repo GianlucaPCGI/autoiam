@@ -39,7 +39,22 @@ app.get('/test', (req, res) => {
         res.json({ message: "success" });
         res.end();
     });
+    
+});
 
+app.post('/create', (req, res) => {
+    let nom = req.body.nom;
+    let statut = req.body.statut;
+    let sql = `INSERT INTO employe (nom,statut) VALUES (${nom},${statut});`; // a ajoute des champs requis
+    let query = db.query(sql, (err, result) => {
+        if (err) {
+            console.log(err);
+            res.json({ message: "error, please try again later" });
+            res.end();
+        }
+        res.json({ message: "Employe ajoute avec succes" });
+        res.end();
+    });
 })
 
 app.post('/posttest', (req, res) => {
