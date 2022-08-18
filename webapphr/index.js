@@ -58,7 +58,7 @@ async function sendHook() {
     }
 }
 
-app.post('/create', (req, res) => {
+app.post('/create', async function(req, res) {
     let nom = req.body.nom;
     let statut = req.body.statut;
     let sql = `INSERT INTO employe (nom,statut) VALUES ('${nom}','${statut}');`; // a ajoute des champs requis
@@ -68,9 +68,14 @@ app.post('/create', (req, res) => {
             res.json({ message: "error, please try again later" });
             res.end();
         }
-        res.json({ message: "Employe ajoute avec succes" });
-        const resp = sendHook();
+        const resp = await sendHook();
+        if (resp) {
+            res.json({ message: "Employe ajoute avec succes et AD succes" });
+            res.end();
+        }
+        res.json({ message: "Employe ajoute avec succes, AD failed" });
         res.end();
+
     });
 })
 
