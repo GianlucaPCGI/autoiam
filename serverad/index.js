@@ -29,23 +29,18 @@ app.post('/test', (req, res) => {
     }
 });
 
-app.get('/script', function(req, res) {
+app.get('/script', async function(req, res) {
     const scripts = ['ls', 'ls', 'echo "hello world"'];
 
-    for (let i = 0; i < scripts.length; i++) {
-        
-        useScript(scripts[i]).then(function(stderr, stdout) {
-            if (stderr) {
-                console.log(stderr);
-                return; 
-            }
+    for (let i = 0; i < scripts.length; i++) {   
 
-            console.log(stdout);
-            return;
-        }).catch((err) => {
-            console.log(err);
-        });
+        try {
+            await useScript(scripts[i]);
+        }catch (e) {
+            console.log(e);
+        }
     }
+         
     res.end();
 });
 
@@ -56,9 +51,12 @@ function useScript(cmd) {
                 console.log(err);
                 return reject(err)
             }else {
+                if (stderr) {
+                    console.log(stderr);
+                    return;
+                }
                 console.log(stdout);
-                console.log(stderr);
-                return resolve(stderr, stdout);
+                
             }
         });
     });
