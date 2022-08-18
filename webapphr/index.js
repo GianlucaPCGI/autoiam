@@ -73,9 +73,10 @@ app.post('/create', function(req, res) {
         if (resp) {
             res.json({ message: "Employe ajoute avec succes et AD succes" });
             res.end();
+        }else {
+            res.json({ message: "Employe ajoute avec succes, AD failed" });
+            res.end();
         }
-        res.json({ message: "Employe ajoute avec succes, AD failed" });
-        res.end();
 
     });
 })
