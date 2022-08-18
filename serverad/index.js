@@ -18,11 +18,11 @@ app.get('/', (req, res) => {
 app.post('/test', (req, res) => {
     if (req.body.hook == true) {
         console.log("success and true");
-        res.json({ message: true });
+        res.status(207)
         res.end();
     }else {
         console.log("success and not true");
-        res.json({ message: false });
+        res.status(400)
         res.end();
     }
 });
