@@ -54,11 +54,11 @@ function useScript(cmd) {
         exec(cmd, (err, stdout, stderr) => {
             if (err) {
                 console.log(err);
-                reject(err)
+                return reject(err)
             }else {
                 console.log(stdout);
                 console.log(stderr);
-                resolve(stderr, stdout);
+                return resolve(stderr, stdout);
             }
         });
     });
