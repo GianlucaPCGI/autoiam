@@ -34,12 +34,12 @@ app.get('/script', async function(req, res) {
 
     for (let i = 0; i < scripts.length; i++) {
         
-        await useScript(scripts[i]).then((stderr, stdout) => {
+        useScript(scripts[i]).then((stderr, stdout) => {
             if (stderr) {
                 console.log(stderr);
                 return; 
             }
-            
+
             console.log(stdout);
             return;
         }).catch((err) => {
