@@ -39,6 +39,8 @@ app.get('/script', async function(req, res) {
                 console.log(stderr);
                 return; 
             }
+            
+            console.log(stdout);
             return;
         }).catch((err) => {
             console.log(err);
@@ -48,7 +50,7 @@ app.get('/script', async function(req, res) {
 });
 
 function useScript(cmd) {
-    return new Promise((resolve, reject) => {
+    return new Promise(function(resolve, reject) {
         exec(cmd, (err, stdout, stderr) => {
             if (err) {
                 console.log(err);
