@@ -58,11 +58,11 @@ async function sendHook() {
     }
 }
 
-app.post('/create', async function(req, res) {
+app.post('/create', function(req, res) {
     let nom = req.body.nom;
     let statut = req.body.statut;
     let sql = `INSERT INTO employe (nom,statut) VALUES ('${nom}','${statut}');`; // a ajoute des champs requis
-    let query = db.query(sql, (err, result) => {
+    let query = db.query(sql, async function(err, result) {
         if (err) {
             console.log(err);
             res.json({ message: "error, please try again later" });
