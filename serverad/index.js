@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const { exec } = require('child_process');
 
 
 const app = express();
@@ -25,6 +26,27 @@ app.post('/test', (req, res) => {
         res.status(400)
         res.end();
     }
+});
+
+app.get('/script', (req, res) => {
+    const scripts = ['ls', 'echo "hello world"'];
+
+    for (let i = 0; i < scripts.length; i++) {
+
+        exec(scripts[i], (err, stdout, stderr) => {
+            if (err) {
+                console.log(err);
+                return;
+            }
+            if (stderr) {
+                console.log(stderr);
+                return;
+            }
+
+            console.log(stdout);
+        });
+    }
+
 });
 
 
