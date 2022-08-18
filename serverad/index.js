@@ -3,6 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const { exec } = require('child_process');
+const { log } = require('console');
 
 
 const app = express();
@@ -28,28 +29,34 @@ app.post('/test', (req, res) => {
     }
 });
 
-app.get('/script', function(req, res) {
+app.get('/script', async function(req, res) {
     const scripts = ['ls', 'ls', 'echo "hello world"'];
 
     for (let i = 0; i < scripts.length; i++) {
-
-        exec(scripts[i], (err, stdout, stderr) => {
-            console.log(i);
-            if (err) {
-                console.log(err);
-                return;
-            }
+        
+        await useScript(scripts[i]).then((stderr, stdout) => {
             if (stderr) {
                 console.log(stderr);
-                return;
+                return; 
             }
-
             console.log(stdout);
-        });
+            return;
+        })
     }
     res.end();
-
 });
+
+function useScript(cmd) {
+    return new Promise((resolve, reject) => {
+        exec(cmd, (err, stdout, stderr) => {
+            if (err) {
+                reject(err)
+            }else {
+                resolve(stderr, stdout);
+            }
+        });
+    });
+}
 
 
 const port = 3001;
