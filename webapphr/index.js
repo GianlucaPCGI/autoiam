@@ -6,8 +6,8 @@ const cors = require('cors');
 const fetch = require('node-fetch');
 
 
-// console.log(process.env.DB_NAME);
-// console.log(process.env.DB_PASSWORD);
+console.log(process.env.DB_NAME);
+console.log(process.env.DB_PASSWORD);
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
@@ -34,17 +34,28 @@ app.get('/', (req, res) => {
     res.end();
 });
 
-function sendHook() {
+async function sendHook() {
     let data = {
         hook: true
     }
-    fetch("http://localhost:3001/test", {
-        method: "POST",
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    })
+    try {
+        const response = await fetch("http://localhost:3001/test", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+        if (response.message) {
+            console.log("the response was true");
+            return true;
+        }
+        console.log("the response was false");
+        return false;
+    }catch (err) {
+        console.log(err);
+        return false;
+    }
 }
 
 app.post('/create', (req, res) => {
@@ -58,14 +69,9 @@ app.post('/create', (req, res) => {
             res.end();
         }
         res.json({ message: "Employe ajoute avec succes" });
-        sendHook();
+        const resp = sendHook();
         res.end();
     });
-})
-
-app.post('/posttest', (req, res) => {
-    console.log(req.body.title);
-    res.end();
 })
 
 const port = 3000;
