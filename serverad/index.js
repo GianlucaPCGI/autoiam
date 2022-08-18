@@ -41,7 +41,9 @@ app.get('/script', async function(req, res) {
             }
             console.log(stdout);
             return;
-        })
+        }).catch((err) => {
+            console.log(err);
+        });
     }
     res.end();
 });
