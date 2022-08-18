@@ -39,7 +39,6 @@ app.get('/script', async function(req, res) {
                 console.log(stderr);
                 return; 
             }
-            console.log(stdout);
             return;
         }).catch((err) => {
             console.log(err);
@@ -52,8 +51,11 @@ function useScript(cmd) {
     return new Promise((resolve, reject) => {
         exec(cmd, (err, stdout, stderr) => {
             if (err) {
+                console.log(err);
                 reject(err)
             }else {
+                console.log(stdout);
+                console.log(stderr);
                 resolve(stderr, stdout);
             }
         });
