@@ -69,7 +69,6 @@ async function sendHook() {
             },
             body: JSON.stringify(data)
         });
-        console.log(response);
         if (response.status == 207) {
             console.log("the response was true");
             return true;
