@@ -34,6 +34,29 @@ app.get('/', (req, res) => {
     res.end();
 });
 
+
+app.post('/create', function(req, res) {
+    let nom = req.body.nom;
+    let statut = req.body.statut;
+    let sql = `INSERT INTO employe (nom,statut) VALUES ('${nom}','${statut}');`; // a ajoute des champs requis
+    let query = db.query(sql, async function(err, result) {
+        if (err) {
+            console.log(err);
+            res.json({ message: "error, please try again later" });
+            res.end();
+        }
+        const resp = await sendHook();
+        if (resp) {
+            res.json({ message: "Employe ajoute avec succes et AD succes" });
+            res.end();
+        }else {
+            res.json({ message: "Employe ajoute avec succes, AD failed" });
+            res.end();
+        }
+        
+    });
+});
+
 async function sendHook() {
     let data = {
         hook: true
@@ -59,30 +82,7 @@ async function sendHook() {
     }
 }
 
-app.post('/create', function(req, res) {
-    let nom = req.body.nom;
-    let statut = req.body.statut;
-    let sql = `INSERT INTO employe (nom,statut) VALUES ('${nom}','${statut}');`; // a ajoute des champs requis
-    let query = db.query(sql, async function(err, result) {
-        if (err) {
-            console.log(err);
-            res.json({ message: "error, please try again later" });
-            res.end();
-        }
-        const resp = await sendHook();
-        if (resp) {
-            res.json({ message: "Employe ajoute avec succes et AD succes" });
-            res.end();
-        }else {
-            res.json({ message: "Employe ajoute avec succes, AD failed" });
-            res.end();
-        }
-
-    });
-})
-
 const port = 3000;
-
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
 });
