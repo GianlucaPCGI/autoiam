@@ -29,7 +29,7 @@ app.post('/test', (req, res) => {
     }
 });
 
-app.get('/script', async function(req, res) {
+app.get('/script', function(req, res) {
     const scripts = ['ls', 'ls', 'echo "hello world"'];
 
     for (let i = 0; i < scripts.length; i++) {
