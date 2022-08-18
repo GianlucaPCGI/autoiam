@@ -56,6 +56,7 @@ function useScript(cmd) {
                     return;
                 }
                 console.log(stdout);
+                resolve();
                 
             }
         });
