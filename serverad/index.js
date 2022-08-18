@@ -46,6 +46,7 @@ app.get('/script', (req, res) => {
             console.log(stdout);
         });
     }
+    res.end();
 
 });
 
