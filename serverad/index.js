@@ -34,7 +34,7 @@ app.get('/script', function(req, res) {
 
     for (let i = 0; i < scripts.length; i++) {
         
-        useScript(scripts[i]).then((stderr, stdout) => {
+        useScript(scripts[i]).then(function(stderr, stdout) {
             if (stderr) {
                 console.log(stderr);
                 return; 
