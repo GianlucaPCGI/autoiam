@@ -31,11 +31,40 @@ app.get('/', (req, res) => {
     res.end();
 });
 
+app.post("/test", (req, res) => {
+    let nom = req.body.nom;
+    let statut = req.body.statut;
+    let sql = `INSERT INTO test (nom,statut) VALUES ('${nom}','${statut}');`; // a ajoute des champs requis
+    let query = db.query(sql, async function(err, result) {
+        if (err) {
+            console.log(err);
+            res.json({ message: "error, please try again later" });
+            res.end();
+        }
+        const resp = await sendHook();
+        if (resp) {
+            res.json({ message: "Employe ajoute avec succes et AD succes" });
+            res.end();
+        }else {
+            res.json({ message: "Employe ajoute avec succes, AD failed" });
+            res.end();
+        }
+        
+    });
+})
+
 
 app.post('/create', function(req, res) {
     let nom = req.body.nom;
+    let prenom = req.body.prenom;
+    let service = req.body.service || null;
     let statut = req.body.statut;
-    let sql = `INSERT INTO employe (nom,statut) VALUES ('${nom}','${statut}');`; // a ajoute des champs requis
+    let type = req.body.type || null;
+    let numero = req.body.numero;
+    let gestionnaire = req.body.gestionnaire || null;
+    let username = req.body.username;
+
+    let sql = `INSERT INTO employe (nom, prenom, service, statut, type, numero, gestionnaire, username) VALUES ('${nom}','${prenom}','${service}','${statut}','${type}, '${numero}', '${gestionnaire}', '${username});`; // a ajoute des champs requis
     let query = db.query(sql, async function(err, result) {
         if (err) {
             console.log(err);
