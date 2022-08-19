@@ -64,7 +64,7 @@ app.post('/create', function(req, res) {
     let gestionnaire = req.body.gestionnaire || "";
     let username = req.body.username;
 
-    let sql = `INSERT INTO employe (nom, prenom, service, statut, type, numero, gestionnaire, username) VALUES ('${nom}','${prenom}','${service}','${statut}','${type}, ${numero},'${gestionnaire}','${username}');`; // a ajoute des champs requis
+    let sql = `INSERT INTO employe (nom, prenom, service, statut, type, numero, gestionnaire) VALUES ('${nom}','${prenom}','${service}','${statut}','${type}, ${numero},'${gestionnaire}');`; // a ajoute des champs requis
     let query = db.query(sql, async function(err, result) {
         if (err) {
             console.log(err);
