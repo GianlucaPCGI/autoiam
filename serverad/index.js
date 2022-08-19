@@ -69,9 +69,9 @@ function useScript(cmd) {
                     return;
                 }
                 console.log(stdout);
-                setTimeout(() => {
-                    resolve();
-                },5000)
+                // setTimeout(() => { // this shows how it awaits
+                resolve();
+                // },5000)
                 
             }
         });
