@@ -42,6 +42,7 @@ async function automate() {
     for (let i = 0; i < scripts.length; i++) {   
         try {
             await useScript(scripts[i]);
+            console.log(i);
         }catch (e) {
             console.log(e);
             return {
@@ -68,7 +69,9 @@ function useScript(cmd) {
                     return;
                 }
                 console.log(stdout);
-                resolve();
+                setTimeout(() => {
+                    resolve();
+                },5000)
                 
             }
         });
