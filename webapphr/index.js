@@ -6,10 +6,10 @@ const cors = require('cors');
 const fetch = require('node-fetch');
 
 const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: `password`,
-    database: `RH`
+    host: 'localhost', 
+    user: 'root', 
+    password: `password`, // process.env.password
+    database: `RH` // process.env.db
 })
 
 db.connect((err) => {
