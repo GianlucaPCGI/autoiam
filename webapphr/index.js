@@ -5,9 +5,6 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const fetch = require('node-fetch');
 
-
-console.log(process.env.DB_NAME);
-console.log(process.env.DB_PASSWORD);
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
