@@ -57,11 +57,11 @@ app.post("/test", (req, res) => {
 app.post('/create', function(req, res) {
     let nom = req.body.nom;
     let prenom = req.body.prenom;
-    let service = req.body.service || null;
+    let service = req.body.service || "";
     let statut = req.body.statut;
-    let type = req.body.type || null;
+    let type = req.body.type || "";
     let numero = req.body.numero;
-    let gestionnaire = req.body.gestionnaire || null;
+    let gestionnaire = req.body.gestionnaire || "";
     let username = req.body.username;
 
     let sql = `INSERT INTO employe (nom, prenom, service, statut, type, numero, gestionnaire, username) VALUES ('${nom}','${prenom}','${service}','${statut}','${type}, '${numero}', '${gestionnaire}', '${username}');`; // a ajoute des champs requis
