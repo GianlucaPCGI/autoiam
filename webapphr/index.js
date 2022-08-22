@@ -8,8 +8,8 @@ const fetch = require('node-fetch');
 const db = mysql.createConnection({
     host: 'localhost', 
     user: 'root', 
-    password: `${process.env.password}`, // process.env.password
-    database: `${process.env.db}` // process.env.db
+    password: `${process.env.DB_PASSWORD}`, // process.env.password
+    database: `${process.env.DB_NAME}` // process.env.db
 })
 
 db.connect((err) => {
