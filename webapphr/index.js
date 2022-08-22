@@ -8,8 +8,8 @@ const fetch = require('node-fetch');
 const db = mysql.createConnection({
     host: 'localhost', 
     user: 'root', 
-    password: `password`, // process.env.password
-    database: `RH` // process.env.db
+    password: `${process.env.password}`, // process.env.password
+    database: `${process.env.db}` // process.env.db
 })
 
 db.connect((err) => {
@@ -40,14 +40,17 @@ app.post("/test", (req, res) => {
             console.log(err);
             res.json({ message: "error, please try again later" });
             res.end();
+            return;
         }
         const resp = await sendHook();
         if (resp) {
             res.json({ message: "Employe ajoute avec succes et AD succes" });
             res.end();
+            return;
         }else {
             res.json({ message: "Employe ajoute avec succes, AD failed" });
             res.end();
+            return;
         }
         
     });
@@ -70,14 +73,17 @@ app.post('/create', function(req, res) {
             console.log(err);
             res.json({ message: "error, please try again later" });
             res.end();
+            return;
         }
         const resp = await sendHook();
         if (resp) {
             res.json({ message: "Employe ajoute avec succes et AD succes" });
             res.end();
+            return;
         }else {
             res.json({ message: "Employe ajoute avec succes, AD failed" });
             res.end();
+            return;
         }
         
     });
