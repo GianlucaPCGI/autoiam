@@ -2,11 +2,11 @@ FROM ubuntu
 
 USER root
 
-RUN apt update
+RUN apt-get update
 
-RUN apt install nodejs
+RUN apt-get install nodejs
 
-RUN apt install npm
+RUN apt-get install npm
 
 WORKDIR /usr/app
 
