@@ -8,7 +8,7 @@ RUN apt-get install -y nodejs
 
 RUN apt-get install -y npm
 
-RUN apt-get install curl
+RUN apt-get install -y curl
 
 RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
 
