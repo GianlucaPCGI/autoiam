@@ -96,6 +96,7 @@ async function sendHook(nom, prenom, numero) {
         prenom: prenom,
         numero: numero,
     }
+    console.log(data);
     try {
         const response = await fetch("http://localhost:3001/test", {
             method: "POST",
