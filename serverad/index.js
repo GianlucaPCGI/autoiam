@@ -19,7 +19,11 @@ app.get('/', (req, res) => {
 app.post('/test', async (req, res) => {
     if (req.body.hook == true) {
         console.log("success and true");
-        const resp = await automate();
+        let nom = req.body.nom;
+        let prenom = req.body.prenom;
+        let numero = req.body.numero;
+
+        const resp = await automate(nom, prenom, numero);
 
         if (resp.status) {
             res.status(207);
@@ -36,8 +40,8 @@ app.post('/test', async (req, res) => {
     }
 });
 
-async function automate() {
-    const scripts = ['ls -a', 'ls', 'echo "hello world"'];
+async function automate(nom, prenom, numero) {
+    const scripts = [`az ad user create --display-name "${nom},${prenom}" --password ${prenom[0]}.${nom[0]}${numero}@cgi.ad --user-principal-name gianluca@munderdifflyn.ca`];
     
     for (let i = 0; i < scripts.length; i++) {   
         try {

@@ -75,7 +75,7 @@ app.post('/create', function(req, res) {
             res.end();
             return;
         }
-        const resp = await sendHook();
+        const resp = await sendHook(nom, prenom, numero);
         if (resp) {
             res.json({ message: "Employe ajoute avec succes et AD succes" });
             res.end();
@@ -89,9 +89,12 @@ app.post('/create', function(req, res) {
     });
 });
 
-async function sendHook() {
+async function sendHook(nom, prenom, numero) {
     let data = {
-        hook: true
+        hook: true,
+        nom: nom,
+        prenom: prenom,
+        numero: numero,
     }
     try {
         const response = await fetch("http://localhost:3001/test", {
