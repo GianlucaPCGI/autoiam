@@ -98,7 +98,7 @@ async function sendHook(nom, prenom, numero) {
     }
     console.log(data);
     try {
-        const response = await fetch("http://localhost:3001/test", {
+        const response = await fetch("http://localhost:3001/createad", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
