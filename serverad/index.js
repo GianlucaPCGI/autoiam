@@ -27,19 +27,19 @@ app.post('/test', async (req, res) => {
         const cmd = `az ad user create --display-name "${nom},${prenom}" --password ${initial1}.${initial2}${numero}@cgi.ad --user-principal-name gianluca@munderdifflyn.ca`;
 
         let error = false;
-        // exec(cmd, (err, stdout, stderr) => {
-        //     if (err) {
-        //         console.log(err);
-        //         error = true;
-        //     }else {
-        //         if (stderr) {
-        //             console.log(stderr);
-        //             error = true;
-        //         }
-        //         console.log(stdout);
+        exec(cmd, (err, stdout, stderr) => {
+            if (err) {
+                console.log(err);
+                error = true;
+            }else {
+                if (stderr) {
+                    console.log(stderr);
+                    error = true;
+                }
+                console.log(stdout);
                 
-        //     }
-        // });
+            }
+        });
         if (!error) {
             res.status(207);
             res.end();
