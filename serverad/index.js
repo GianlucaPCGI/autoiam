@@ -22,6 +22,16 @@ app.post('/createad', async (req, res) => {
         let nom = req.body.nom;
         let prenom = req.body.prenom;
         let numero = req.body.numero;
+
+        if (!(nom && nom.length < 50)) {
+            res.json({ message: "nom is too long"});
+            return;
+        }
+        if (!(prenom && prenom.length < 50)) {
+            res.json({ message: "prenom is too long"});
+            return;
+        }
+        
         let initial1 = prenom[0];
         let initial2 = nom[0];
         const cmd = `az ad user create --display-name "${nom},${prenom}" --password ${initial1}.${initial2}${numero}@cgi.ad --user-principal-name ${nom}@munderdifflyn.ca`;
