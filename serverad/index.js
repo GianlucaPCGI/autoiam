@@ -22,14 +22,27 @@ app.post('/test', async (req, res) => {
         let nom = req.body.nom;
         let prenom = req.body.prenom;
         let numero = req.body.numero;
+        const cmd = `az ad user create --display-name "${nom},${prenom}" --password ${prenom[0]}.${nom[0]}${numero}@cgi.ad --user-principal-name gianluca@munderdifflyn.ca`;
 
-        const resp = await automate(nom, prenom, numero);
-
-        if (resp.status) {
+        let error = false;
+        exec(cmd, (err, stdout, stderr) => {
+            if (err) {
+                console.log(err);
+                error = true;
+            }else {
+                if (stderr) {
+                    console.log(stderr);
+                    error = true;
+                }
+                console.log(stdout);
+                
+            }
+        });
+        if (!error) {
             res.status(207);
             res.end();
         }else {
-            console.log(`error: ${resp.error}\nscript #: ${resp.scriptNumber}`);
+            console.log(`error: in ad`);
             res.status(400)
             res.end();
         }
