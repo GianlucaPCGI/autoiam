@@ -85,6 +85,7 @@ function useScript(cmd) {
                     console.log(stderr);
                     return;
                 }
+                // not in use
                 console.log(stdout);
                 // setTimeout(() => { // this shows how it awaits
                 resolve();
