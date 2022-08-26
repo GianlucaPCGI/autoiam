@@ -1,4 +1,0 @@
-Required: 
-
-An azure AD account
-One of these roles: Global admin, Cloud Application Admin, Application admin or owner of the service principal.
